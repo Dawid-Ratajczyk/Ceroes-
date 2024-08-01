@@ -1,0 +1,13 @@
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\bin\Debug\netcoreapp3.1\Ceroes#.exe
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\bin\Debug\netcoreapp3.1\Ceroes#.deps.json
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\bin\Debug\netcoreapp3.1\Ceroes#.runtimeconfig.json
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\bin\Debug\netcoreapp3.1\Ceroes#.runtimeconfig.dev.json
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\bin\Debug\netcoreapp3.1\Ceroes#.dll
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\bin\Debug\netcoreapp3.1\Ceroes#.pdb
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\obj\Debug\netcoreapp3.1\Ceroes#.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\obj\Debug\netcoreapp3.1\Ceroes#.AssemblyInfoInputs.cache
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\obj\Debug\netcoreapp3.1\Ceroes#.AssemblyInfo.cs
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\obj\Debug\netcoreapp3.1\Ceroes#.csproj.CoreCompileInputs.cache
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\obj\Debug\netcoreapp3.1\Ceroes#.dll
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\obj\Debug\netcoreapp3.1\Ceroes#.pdb
+C:\Users\bruno\OneDrive\Desktop\c#\Ceroes#\Ceroes#\obj\Debug\netcoreapp3.1\Ceroes#.genruntimeconfig.cache
