@@ -15,6 +15,32 @@ namespace Ceroes_
             string key = press.Key.ToString();
             return key;
         }
+        static public int Flip(int i)
+        {
+            if (i == 0) return 1;
+            else return 0;
+        }
+        public class Select
+        {
+            int index;
+            int count;
+            
+            public Select(List<string> Lines)
+            {
+                index = 0;
+                count = Lines.Count;
+            }
+            public int Choice()
+            {
+                
+                while(true)
+                {
+
+                }
+            }
+
+
+        }
         
     }
 }

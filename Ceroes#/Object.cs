@@ -60,18 +60,20 @@ namespace Ceroes_
         public class Hero:Object
         {
             public int id = 1;
-            public static List<Hero> list = new List<Hero> { new Hero("Player",1,1,3)};
+            public int playerId;
+            public static List<Hero> list = new List<Hero> { new Hero("Player",1,1,3,0),new Hero("Oponent", 4, 4, 4,1) };
             //public static Hero Player = new Hero("Player", 1, 1, 3);
             public bool controlled = true;
 
             
 
-            public Hero(string Name, int X, int Y, int Color)
+            public Hero(string Name, int X, int Y, int Color,int player)
             {
                 name = Name;
                 x = X;
                 y = Y;
                 color = Color;
+                playerId = player;
             }
             public int Movement()
             {
@@ -84,11 +86,11 @@ namespace Ceroes_
                     case "D": return 1;
                     case "S": return 2;
                     case "A": return 3;
-                    case "X": return 4; //shoot arrow
+                    case "X": return 4; //interact
                 }
                 return 5;//do nothing
             }
-
+         
 
         }
         public class Building:Object
@@ -139,5 +141,6 @@ namespace Ceroes_
                 }
             }
         }
+   
     }
 }

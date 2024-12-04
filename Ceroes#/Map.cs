@@ -5,6 +5,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.Versioning;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.Json;
 
@@ -13,7 +14,8 @@ namespace Ceroes_
     internal class Map
     {
         public static Material mapm;
-        public static Map mapa = new Map(30,20);
+        public static Map mapa = new Map(40,30);
+        private static List<string> toDraw = new List<string> { };
         public int size,x,y;
         public int sideS;
         public  List <List<int>> plane,background;
@@ -40,8 +42,9 @@ namespace Ceroes_
             this.plane =EmptyPlane(0);
             this.background=EmptyPlane(2);
             this.sideS = x / 2;
+            this.plane[2][2] = 8;
         }
-        public  void SaveCurrentMap()
+        public void SaveCurrentMap()
         {
             string jsonString = x+" "+y+System.Environment.NewLine;
             for (int i=0; i < y; i++)
@@ -85,7 +88,7 @@ namespace Ceroes_
                 case 5: Console.BackgroundColor = ConsoleColor.Yellow;   break;
                 case 6: Console.BackgroundColor = ConsoleColor.DarkRed;  break;
                 case 7: Console.BackgroundColor = ConsoleColor.DarkGray; break;
-                case 8: Console.BackgroundColor = ConsoleColor.Magenta; break;
+                case 8: Console.BackgroundColor = ConsoleColor.Magenta;  break;
             }
         }
         public void SetObjectColour(int id)
@@ -156,34 +159,49 @@ namespace Ceroes_
             hSpacer();
             
             hLine();
-            bool answear = IsInteractingWithBuilding(Object.Hero.list[0].x, Object.Hero.list[0].y);
+            bool answear = IsInteractingWithBuilding(Object.Hero.list[Program.player].x, Object.Hero.list[Program.player].y);
             Visual.CenterText(Convert.ToString(answear), x);
-            
-            
+   
             hLine();
-            
+
+            BreakLine();
+            hSpacer();
+
+            hLine();
+            Visual.CenterText("Player: " + (Program.player + 1), x);
+            hLine();
+
             BreakLine();
             HoriznotalLine();
         }
         public void DrawRightBox(int line)
         {
-            List<string> toDraw =new List<string> {};
-            for(int i = 0; i <Resources.typesAmout; i++) { toDraw.Add(Convert.ToString(Player.player1.Resources[i]));}
+            
+           
             hSpacer(5);
 
-            if (line == 0) { Visual.SideBoxLine(sideS,true); }
+            if (line == 0) { Visual.SideBoxLine(sideS-1,true); }
             else if (line <= toDraw.Count) { Visual.SideBoxStick(); }
 
             if (line > 0 && line <= toDraw.Count)
-            { Visual.CenterText(Resources.names[line-1]+": " +toDraw[line - 1], (x/2)+1); Visual.SideBoxStick(); }
+            { Visual.CenterText(Resources.names[line-1]+": " +toDraw[line - 1], (x/2)); Visual.SideBoxStick(); }
             
             if (line == toDraw.Count + 1)
-            {  Visual.SideBoxLine(sideS); }    
+            {  Visual.SideBoxLine(sideS-1); }    
             if(line>toDraw.Count+1)hSpacer(sideS+3);
+        }
+
+        private void ObjectFromString(Player player1, Player player2, string v)
+        {
+            throw new NotImplementedException();
         }
 
         public void PrintPlane()
         {
+            toDraw = new List<string> { };
+            //toDraw.Add("Player: " + Program.player);
+            for (int i = 0; i < Resources.typesAmout; i++) { toDraw.Add(Convert.ToString(Player.list[Program.player].Resources[i])); }
+
             vSpacer();
             HoriznotalLine(true,false);
             DrawRightBox(0);
@@ -221,7 +239,7 @@ namespace Ceroes_
             {
                 if (Object.Building.list[i].id == buildingId)
                 if (Object.Building.list[i].x == X && Object.Building.list[i].y== Y-1)
-                if (Object.Hero.list[heroId].color==Object.ReturnColor(X,Y-1))
+                if (Object.Hero.list[Program.player].color==Object.ReturnColor(X,Y-1))
                 return true;
             }
             return false;
@@ -233,10 +251,21 @@ namespace Ceroes_
             return answear;
             
         }
-        public bool SpotEmpty(int X,int Y)
+        public bool SpotEmpty(int X,int Y, bool checkForThing=true)
         {
-            if ((Map.mapa.plane[X][Y] == 0 && Map.mapa.background[X][Y] == 2) ) return true;
+            if ((Map.mapa.plane[X][Y] == 0 && Map.mapa.background[X][Y] == 2)&&checkForThing==true) return true;
+            if (Map.mapa.background[X][Y] == 2&&checkForThing==false)return true; 
             return false;
+        }
+        public int  Thing(int X,int Y)
+        {
+            if (X >= 0 && Y >= 0&&Y<=mapa.y-1 && X <= mapa.x-1) return mapa.plane[X][Y];
+            else return 0;
+        }
+        public static bool IsResource(int thingId)
+        {
+            if(thingId >4&&thingId<9) return true;
+            else return false;
         }
         //plane manipulation
         public void Teleport(int X, int Y,int fromX,int fromY)
@@ -257,7 +286,7 @@ namespace Ceroes_
             
             public static void Place()
             {
-              //  Map.mapa.plane[10][10] = 5;
+               //  Map.mapa.plane[2][2] = 6;
                // Map.mapa.plane[12][12] = 6;
             }
             public static int Color(string symbol)
