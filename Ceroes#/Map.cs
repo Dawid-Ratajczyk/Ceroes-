@@ -149,29 +149,26 @@ namespace Ceroes_
             if (newLine) Console.WriteLine();
             ResetColour();
         }
-        public void DrawBox()
+        public void DrawBox(List<string> Lines)
         {
-            List<string> toShow = new List<string> {"X: ", Convert.ToString(Object.Hero.list[0].x)," Y: ", Convert.ToString(Object.Hero.list[0].y) };
+            Lines = new List<string> {"X: ", Convert.ToString(Object.Hero.list[0].x), Convert.ToString(Object.Hero.list[0].y) };
             
             
             BreakLine();
             HoriznotalLine();
             hSpacer();
             
-            hLine();
+            for(int i=0; i<Lines.Count; i++)
+            {
+                hLine();
+                Visual.CenterText(Lines[i], x);
+                hLine();
+                BreakLine();
+                if(i!=Lines.Count-1)hSpacer();
+            }
+            /*
             bool answear = IsInteractingWithBuilding(Object.Hero.list[Program.player].x, Object.Hero.list[Program.player].y);
-            Visual.CenterText(Convert.ToString(answear), x);
-   
-            hLine();
-
-            BreakLine();
-            hSpacer();
-
-            hLine();
-            Visual.CenterText("Player: " + (Program.player + 1), x);
-            hLine();
-
-            BreakLine();
+            Visual.CenterText(Convert.ToString(answear), x);*/       
             HoriznotalLine();
         }
         public void DrawRightBox(int line)

@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using System.Runtime.InteropServices;
 using System.Data;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
 
 namespace Ceroes_
 {
@@ -13,6 +15,9 @@ namespace Ceroes_
         public static int player = 0;
         public static int stateId = 0; //0-map 1-town 2-combat
         public static bool gameLoopRunning = true;
+       
+        public static Technical.Select Menu = new Technical.Select(new List<string>() { "A", "B", "C" });
+
         //public static Map mapa;
         static void TechnicalSetup()
         {
@@ -21,24 +26,25 @@ namespace Ceroes_
         static void GameSetup()
         {
             Object.Initialization();
-            
+
         }
-      
+       
+
         static void PlayerAction()
         {            
-            //movement
             int moveX = 0, moveY = 0;
             string key = Technical.KeyPress();
-            Console.WriteLine(key);
 
             switch(key) 
             {
+                //movement
                 case "W": moveY=-1; break;
                 case "D": moveX= 1; break;
                 case "S": moveY= 1; break;
                 case "A": moveX=-1; break;
-                case "O": player = Technical.Flip(player);break;
-                //case "X": 
+                //action
+                case "X": moveX = Menu.Choice();break;
+                 
             }
             int nextSpotX = moveX + Object.Hero.list[player].x, nextSpotY = Object.Hero.list[player].y + moveY;
             int thingSpot = Map.mapa.Thing(nextSpotX, nextSpotY);
@@ -67,18 +73,22 @@ namespace Ceroes_
 
             }
         }
-       
+        static void Interact()
+        {
+        
+        }
         static void GameLoop()
         {
             while(gameLoopRunning)
             {
-
+                //drawing image
                 Map.mapa.PrintPlane();
-                Map.mapa.DrawBox();
-                //Console.WriteLine(Hero.Player.x + " " + Hero.Player.y);
+                Map.mapa.DrawBox(new List<string> {"a","b","c"});
+              
+                //game logic
                 PlayerAction();
                 
-
+                //refresh
                 Technical.CleanBuffer();
                 Thread.Sleep(200);
                 Console.Clear();
