@@ -53,45 +53,30 @@ namespace Ceroes_
             }
             for(int i = 0; i < Hero.list.Count;i++)
             {
-                Map.mapa.plane[Hero.list[i].x][Hero.list[i].y] = Hero.list[i].id;
+                Map.mapa.plane[Hero.list[i].x][Hero.list[i].y] = Hero.mapId;
             }
         }
 
         public class Hero:Object
         {
+            public const int mapId= 1;
             public int id = 1;
             public int playerId;
-            public static List<Hero> list = new List<Hero> { new Hero("Player",1,1,3,0),new Hero("Oponent", 4, 4, 4,1) };
-            //public static Hero Player = new Hero("Player", 1, 1, 3);
+            public List<Unit> Units = new List<Unit>();
+
+            public static List<Hero> list = new List<Hero> { new Hero("Player", 1, 1, 0, 0), new Hero("Oponent", 4, 4, 1, 1) };
             public bool controlled = true;
 
-            
-
-            public Hero(string Name, int X, int Y, int Color,int player)
+            public Hero(string Name, int X, int Y, int player,int Id)
             {
+
                 name = Name;
                 x = X;
                 y = Y;
-                color = Color;
+                color = Visual.PlayerColour(player);
                 playerId = player;
+                id = Id;
             }
-            public int Movement()
-            {
-                ConsoleKeyInfo press;
-                press = Console.ReadKey();
-                string key = press.Key.ToString();
-                switch (key)
-                {
-                    case "W": return 0;
-                    case "D": return 1;
-                    case "S": return 2;
-                    case "A": return 3;
-                    case "X": return 4; //interact
-                }
-                return 5;//do nothing
-            }
-         
-
         }
         public class Building:Object
         {
@@ -120,23 +105,18 @@ namespace Ceroes_
 
                     if (list[i].name == "Castle")
                     {
-                        
                         Map.mapa.background[X][Y] = 1;
                         Map.mapa.background[X+1][Y] = 1;
                         Map.mapa.background[X-1][Y] = 1;
                         Map.mapa.background[X - 1][Y-1]= 1;
                         Map.mapa.background[X + 1][Y-1] = 1;
 
-
                         Map.mapa.plane[X+1][Y] = 3;
                         Map.mapa.plane[X-1][Y] = 3;
                         Map.mapa.plane[X][Y-1] = 4;
 
-                        list.Add(new Object.Building("Banner", X + 1, Y, list[i].color));
-                        
-                     
+                        list.Add(new Object.Building("Banner", X + 1, Y, list[i].color));  
                         list.Add(new Object.Building("Banner", X - 1, Y, list[i].color));
-                        
                     }
                 }
             }

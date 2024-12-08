@@ -11,7 +11,17 @@ namespace Ceroes_
         static public string[] mapNames = { "Air", "Hero" ,"Castle","Banner","Barrier","Gold","Wood","Stone","Crystal"};
         
         
+        public static int PlayerColour(int Id)
+        {
 
+            switch(Id) 
+            {
+                case 0: return 3;
+                case 1: return 4;
+            }
+            return 0;
+
+        }
         public static void CenterText(string text,int space)
         {
             int length = space-text.Length;

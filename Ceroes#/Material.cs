@@ -18,6 +18,7 @@ namespace Ceroes_
         public int pickup;
         public Material(int id, string name, int color,int pickup)
         {
+
             this.id = id;
             this.name = name;
             this.color = color;

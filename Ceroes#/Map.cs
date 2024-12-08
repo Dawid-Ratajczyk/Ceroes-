@@ -166,12 +166,13 @@ namespace Ceroes_
                 BreakLine();
                 if(i!=Lines.Count-1)hSpacer();
             }
+
             /*
             bool answear = IsInteractingWithBuilding(Object.Hero.list[Program.player].x, Object.Hero.list[Program.player].y);
             Visual.CenterText(Convert.ToString(answear), x);*/       
             HoriznotalLine();
         }
-        public void DrawRightBox(int line)
+        public void DrawRightMapBox(int line)
         {
             
            
@@ -201,7 +202,7 @@ namespace Ceroes_
 
             vSpacer();
             HoriznotalLine(true,false);
-            DrawRightBox(0);
+            DrawRightMapBox(0);
             for (int i = 0; i < y; i++)
             {
                 hSpacer();
@@ -223,7 +224,7 @@ namespace Ceroes_
                     ResetColour();
                     if (j == x - 1) { hLine(); }
                 }
-                DrawRightBox(i+1);
+                DrawRightMapBox(i+1);
                 SetBackgroundColour(0);
                 Console.WriteLine();
             }
@@ -236,7 +237,7 @@ namespace Ceroes_
             {
                 if (Object.Building.list[i].id == buildingId)
                 if (Object.Building.list[i].x == X && Object.Building.list[i].y== Y-1)
-                if (Object.Hero.list[Program.player].color==Object.ReturnColor(X,Y-1))
+                if (Object.Hero.list[Program.heroId].color==Object.ReturnColor(X,Y-1))
                 return true;
             }
             return false;

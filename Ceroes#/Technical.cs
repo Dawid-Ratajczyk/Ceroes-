@@ -16,6 +16,7 @@ namespace Ceroes_
             press = Console.ReadKey();
             string key = press.Key.ToString();
             return key;
+
         }
         static public int Flip(int i)
         {
